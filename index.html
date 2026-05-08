@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invitación Karen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #111, #1b1b1b, #3a2a00);
+      color: white;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 500px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 25px;
+      padding: 30px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 30px rgba(255, 196, 0, 0.2);
+      animation: aparecer 1.2s ease;
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .titulo {
+      font-size: 42px;
+      color: #f0b90b;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+
+    .sub {
+      font-size: 18px;
+      color: #ddd;
+      margin-bottom: 25px;
+    }
+
+    .info {
+      margin: 18px 0;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .countdown {
+      margin-top: 25px;
+      font-size: 28px;
+      color: #f0b90b;
+      font-weight: bold;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 14px 28px;
+      border-radius: 50px;
+      background: #f0b90b;
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      background: #ffd84d;
+    }
+
+    .decor {
+      font-size: 60px;
+      margin-bottom: 10px;
+    }
+
+    .music {
+      margin-top: 25px;
+      color: #bbb;
+      font-size: 14px;
+    }
+
+    iframe {
+      width: 100%;
+      border-radius: 15px;
+      margin-top: 20px;
+    }
+
+    @media(max-width:600px){
+      .titulo {
+        font-size: 32px;
+      }
+
+      .card {
+        padding: 25px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="card">
+
+      <div class="decor">🎉</div>
+
+      <div class="titulo">Karen</div>
+
+      <div class="sub">
+        Estás invitado a una fiesta temática estilo Narcos 🔥
+      </div>
+
+      <div class="info">
+        📅 <strong>16 de Mayo</strong><br>
+        🕑 <strong>2:00 PM</strong>
+      </div>
+
+      <div class="info">
+        🎵 Música especial:<br>
+        <strong>Las Muñecas de la Mafia - Dame Tu Amor</strong>
+      </div>
+
+      <div class="countdown" id="contador">
+        Cargando cuenta regresiva...
+      </div>
+
+      <a class="btn" href="https://maps.app.goo.gl/iue5b4aGKH1k3PYM7" target="_blank">
+        📍 Ver ubicación
+      </a>
+
+      <iframe height="315"
+        src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&mute=0"
+        title="Música"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+
+      <div class="music">
+        Abre la invitación con sonido 🔊
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const fechaEvento = new Date("May 16, 2026 14:00:00").getTime();
+
+    const contador = setInterval(() => {
+      const ahora = new Date().getTime();
+      const diferencia = fechaEvento - ahora;
+
+      const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+      const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+      document.getElementById("contador").innerHTML =
+        `⏳ ${dias}d ${horas}h ${minutos}m ${segundos}s`;
+
+      if (diferencia < 0) {
+        clearInterval(contador);
+        document.getElementById("contador").innerHTML = "🎉 ¡La fiesta comenzó!";
+      }
+    }, 1000);
+  </script>
+
+</body>
+</html>
